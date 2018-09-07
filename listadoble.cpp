@@ -1,20 +1,20 @@
-//librerias
+//librerias a incluir
 #include<iostream>
 using namespace std;
 
 //definiciones
 struct Libro{
-    char *titulo;
-    int anioDePublicacion;
+    char *tit;
+    int ADP;
     struct Libro* next;
     struct Libro* previous;
 };
-//prototipos
-Libro* crear_libro();
-void insertar_libro(Libro** ,Libro**);
+//prototipos del programa
+Libro* C_libro();
+void I_libro(Libro** ,Libro**);
 void imprimir(Libro* );
-Libro* buscar_libro(Libro* );
-void modificar_libro(Libro* );
+Libro* B_libro(Libro* );
+void M_libro(Libro* );
 
 
 int main(){
@@ -23,20 +23,20 @@ int main(){
 	return 0;
 }
 
-Libro* crear_libro(){
+Libro* C_libro(){
     int anio=0;
-    char *titulo=new char[64];
-    cout<<"INGRESA EL TITULO DEL LIBRO QUE DESEAS INGRESAR: "<<endl;
-     cin>>titulo;
-    cout<<"INGRESA EL ANIO DE PUBLICACION DEL LIBRO QUE DESEAS INGRESAR: "<<endl;
+    char *tit=new char[64];
+    cout<<"Ingresa el libro: "<<endl;
+     cin>>tit;
+    cout<<"Ingresa su Año de publicacion: "<<endl;
     cin>>anio;
     Libro* nuevo_libro=new Libro();
-    nuevo_libro->titulo=titulo;
-    nuevo_libro->anioDePublicacion=anio;
+    nuevo_libro->tit=tit;
+    nuevo_libro->ADP=anio;
     return nuevo_libro;
 }
 
-void insertar_libro(Libro** lista,Libro** cola){
+void I_libro(Libro** lista,Libro** cola){
     Libro* nuevo_libro=crear_libro();
     if(*lista==NULL){
         *lista=nuevo_libro;
@@ -59,37 +59,37 @@ void imprimir(Libro* lista){
         cout<<"Lista vacia"<<endl;
     }
     while(aux!=NULL){
-        cout<<aux->titulo<<endl;
-        cout<<aux->anioDePublicacion<<endl;
+        cout<<aux->tit<<endl;
+        cout<<aux->ADP<<endl;
         aux=aux->next;
     }
 }
 
 
 
-Libro* buscar_libro(Libro* lista){
+Libro* B_libro(Libro* lista){
     if(lista==NULL){
-        cout<<"TU LISTA ESTA VACIA, INGRESA ELEMENTOS EN ELLA PARA PODER BUSCAR"<<endl;
+        cout<<"Error no hay contenido"<<endl;
     }
     else{
-        char *titulo=new char[64];
+        char *tit=new char[64];
         int anio=0;
-        cout<<"QUE LIBRO ESTAS BUSCANDO? "<<endl;
-        cin>>titulo;
-        cout<<"EN QUE ANIO SE PUBLICO? "<<endl;
+        cout<<"que libro necesitas"<<endl;
+        cin>>tit;
+        cout<<"En que año fue publicado"<<endl;
         cin>>anio;
         Libro* aux=lista;
-        while(aux!=NULL && aux->titulo!=titulo && aux->anioDePublicacion!=anio){
+        while(aux!=NULL && aux->tit!=tit && aux->ADP!=anio){
             aux=aux->next;
         }
         return aux;
     }
 }
 
-void modificar_libro(Libro* lista){
+void M_libro(Libro* lista){
     Libro* modificado=buscar_libro(lista);
-    cout<<"DIGITA EL NUEVO TITULO: "<<endl;
-    cin>>modificado->titulo;
-    cout<<"DIGITA EL NUEVO ANIO DE PUBLICACION: "<<endl;
-    cin>>modificado->anioDePublicacion;
+    cout<<"Ingresa nuevo titulo "<<endl;
+    cin>>modificado->tit;
+    cout<<"Ingresa el año de publicacion"<<endl;
+    cin>>modificado->ADP;
 }
